@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sound Box Working Wala Payment Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .buy-button {
+      background-color: yellow;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .buy-button:hover {
+      background-color: orange;
+    }
+    .app-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      padding-bottom: 40px;
+    }
+    .app-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .app-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+    .app-name {
+      font-weight: bold;
+      flex: 1;
+      text-align: left;
+    }
+    .price {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: blue;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: gray;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+    #paymentPage {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Page with Payment Apps -->
+  <div id="mainPage">
+    <div class="container">
+      <div class="title">All 3 Apps @109</div>
+      <div class="subtitle">(SoundBox Working 💯)</div>
+
+      <div class="app-card">
+        <span class="price">₹109</span>
+        
+        <!-- PhonePe -->
+        <div class="app-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe0N6bjzJ89P1KNnl9g-kueY850sUinE6Hj4HQkpCGqQ8OlY1BzUoFdXk&s=10" alt="PhonePe Logo" class="app-logo">
+          <div class="app-name">PhonePe</div>
+        </div>
+
+        <!-- Paytm -->
+        <div class="app-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZlnzijWTw4HyyNFwday9PKG-d2-8fBZEQnQ&usqp=CAU" alt="Paytm Logo" class="app-logo">
+          <div class="app-name">Paytm</div>
+        </div>
+
+        <!-- GPay -->
+        <div class="app-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbX5WJCJLw8JGc8dHGVygkgcFQCCObK1MQsw&usqp=CAU" alt="GPay Logo" class="app-logo">
+          <div class="app-name">GPay</div>
+        </div>
+      </div>
+      
+      <button class="buy-button" onclick="goToPayment()">Buy</button>
+    </div>
+  </div>
+
+  <!-- Payment Page -->
+  <div id="paymentPage">
+    <div class="container">
+      <h2>Complete Your Payment For All 3 Apps</h2>
+      
+      <!-- Manually Added App Image -->
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe0N6bjzJ89P1KNnl9g-kueY850sUinE6Hj4HQkpCGqQ8OlY1BzUoFdXk&s=10" alt="PhonePe Logo" class="app-logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbX5WJCJLw8JGc8dHGVygkgcFQCCObK1MQsw&usqp=CAU"                   alt="Gpay Logo"    class="app-logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZlnzijWTw4HyyNFwday9PKG-d2-8fBZEQnQ&usqp=CAU"                   alt="Paytm Logo"   class="app-logo">
+      
+      <!-- QR Code Image from Google Drive -->
+      <img src="https://lh3.googleusercontent.com/d/1RvaFHKknhIKwDqM9MK0SeIEuqIifNo9K=w1000" alt="UPI QR Code" width="200">
+      
+      <p>Pay ₹<span id="appAmount">109</span> by scanning the QR code and send the screenshot to the admin on Telegram.</p>
+      
+      <!-- UPI Payment Button -->
+      <button class="buy-button" onclick="payUsingUPI()">Pay via UPI</button>
+      
+      <br><br>
+      
+      <a href="https://t.me/GodStakeMines" target="_blank">Contact Admin on Telegram</a>
+      
+      <br><br>
+      <button onclick="goBack()" style="background: lightgray;">Go Back</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to show the payment page
+    function goToPayment() {
+      document.getElementById("mainPage").style.display = "none";
+      document.getElementById("paymentPage").style.display = "block";
+    }
+
+    // Function to go back to the main page
+    function goBack() {
+      document.getElementById("paymentPage").style.display = "none";
+      document.getElementById("mainPage").style.display = "block";
+    }
+
+    // Function to trigger the UPI intent for direct payment
+    function payUsingUPI() {
+      window.location.href = "upi://pay?pa=mandacharan@fam&pn=mandacharan&am=109&cu=INR";
+    }
+  </script>
+
+</body>
+</html>
